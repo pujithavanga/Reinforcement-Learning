@@ -1,0 +1,37 @@
+import numpy as np
+
+# Define the 6x4 matrix
+matrix = np.array([
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+    [13, 14, 15, 16],
+    [17, 18, 19, 20],
+    [21, 22, 23, 24]
+])
+
+# Define the exploration probability
+epsilon = 0.1
+
+# Define the exploration mechanism
+def exploration_mechanism(matrix, epsilon):
+    # Create a copy of the matrix
+    new_matrix = matrix.copy()
+
+    # Iterate over each element of the matrix
+    for i in range(matrix.shape[0]):
+        for j in range(matrix.shape[1]):
+            # With probability epsilon, choose a random value between 1 and 100
+            if np.random.rand() < epsilon:
+                new_matrix[i, j] = np.random.randint(1, 101)
+    
+    return new_matrix
+
+# Apply the exploration mechanism to the matrix
+new_matrix = exploration_mechanism(matrix, epsilon)
+
+# Print the original matrix and the modified matrix
+print("Original Matrix:")
+print(matrix)
+print("\nModified Matrix with Exploration Mechanism:")
+print(new_matrix)
